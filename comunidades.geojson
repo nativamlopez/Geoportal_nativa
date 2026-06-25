@@ -1,0 +1,25 @@
+{
+"type": "FeatureCollection",
+"name": "comunidades",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "nombre_c_1": "NARANJOS", "IDD": 1725 }, "geometry": { "type": "Point", "coordinates": [ -59.16471581146665, -18.580930992748524 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "FLORIDA", "IDD": 852 }, "geometry": { "type": "Point", "coordinates": [ -58.451753649034607, -18.03382375494941 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "EL CARMEN DE LIMONES", "IDD": 1582 }, "geometry": { "type": "Point", "coordinates": [ -59.254944330263697, -16.434762450833958 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SAN RAFAEL", "IDD": 3567 }, "geometry": { "type": "Point", "coordinates": [ -59.701451824936662, -18.429904294542094 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SAN MANUEL", "IDD": 1417 }, "geometry": { "type": "Point", "coordinates": [ -58.383978914404111, -16.284418951824907 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "PALMERA", "IDD": 1193 }, "geometry": { "type": "Point", "coordinates": [ -58.207326182294857, -18.200253417976718 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "COMUNIDAD INDIGENA SAN LORENZO VIEJO", "IDD": 1890 }, "geometry": { "type": "Point", "coordinates": [ -59.339490440159686, -18.496789517585377 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SAN LORENZO NUEVO", "IDD": 1726 }, "geometry": { "type": "Point", "coordinates": [ -59.330690661614447, -18.524731754986473 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SANTO CORAZON", "IDD": 1681 }, "geometry": { "type": "Point", "coordinates": [ -58.809765923425395, -17.974097993096372 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "COMUNIDAD INDIGENA EL TORNITO", "IDD": 2123 }, "geometry": { "type": "Point", "coordinates": [ -59.372749086635991, -16.567303187511477 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SANTIAGOMA", "IDD": 893 }, "geometry": { "type": "Point", "coordinates": [ -59.620040842028352, -18.416636643579494 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "VILLAZON", "IDD": 3497 }, "geometry": { "type": "Point", "coordinates": [ -59.186543246407965, -16.660782853367255 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SANTA ROSA DE BOCAINA", "IDD": 331 }, "geometry": { "type": "Point", "coordinates": [ -58.311040733393739, -18.174040017058783 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "NATIVIDAD DE BAHIA", "IDD": 744 }, "geometry": { "type": "Point", "coordinates": [ -59.154372214133112, -16.645228181296151 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "RINCON DEL TIGRE", "IDD": 3376 }, "geometry": { "type": "Point", "coordinates": [ -58.169830674312259, -18.208454881552669 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SAN MIGUELITO", "IDD": 715 }, "geometry": { "type": "Point", "coordinates": [ -59.013727950693429, -16.709815204796268 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "MOTACUCITO", "IDD": 3078 }, "geometry": { "type": "Point", "coordinates": [ -60.049817300818482, -18.163144106762871 ] } },
+{ "type": "Feature", "properties": { "nombre_c_1": "SAN PEDRO", "IDD": 2888 }, "geometry": { "type": "Point", "coordinates": [ -59.81567648121306, -18.288299829214015 ] } }
+]
+}
