@@ -524,7 +524,7 @@
                 <div class="selected-kicker">Selecciona un área en el mapa</div>
                 <div class="selected-title">Explora el territorio</div>
                 <p class="selected-description">
-                    Haz clic sobre un área protegida, municipio o corredor ecológico para ver sus datos generales, descripción y actividades asociadas.
+                    Haz clic sobre un área protegida, municipio, corredor ecológico, comunidad o centro de operación para ver sus datos generales, descripción y actividades asociadas.
                 </p>
             </div>
         </div>
@@ -611,6 +611,40 @@
                     fillColor: '#b7795c',
                     fillOpacity: 0.19
                 }
+            },
+            {
+                id: 'comunidades',
+                name: 'Comunidades',
+                file: './comunidades.geojson',
+                type: 'Comunidad',
+                metricKey: 'comunidades',
+                point: true,
+                style: { color: '#c9a86a' },
+                pointStyle: {
+                    radius: 5,
+                    color: '#f3e6cf',
+                    weight: 1.2,
+                    opacity: 0.9,
+                    fillColor: '#c9a86a',
+                    fillOpacity: 0.9
+                }
+            },
+            {
+                id: 'centros',
+                name: 'Centros de operación',
+                file: './centros.geojson',
+                type: 'Centro',
+                metricKey: 'centros',
+                point: true,
+                style: { color: '#d98c5f' },
+                pointStyle: {
+                    radius: 7,
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillColor: '#d98c5f',
+                    fillOpacity: 0.95
+                }
             }
         ];
 
@@ -619,6 +653,8 @@
             areas: 0,
             municipios: 0,
             corredores: 0,
+            comunidades: 0,
+            centros: 0,
             hectareas: 0
         };
 
@@ -666,8 +702,8 @@
         }
 
         function buildPopup(properties, layerType) {
-            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'name', 'Name'], 'Territorio sin nombre');
-            const descripcion = getProperty(properties, ['descripcion', 'Descripción', 'DESCRIPCION', 'description'], 'Haz clic para ver más información en el panel lateral.');
+            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'nombre_c_1', 'nombre', 'name', 'Name'], 'Territorio sin nombre');
+            const descripcion = getProperty(properties, ['descripcion', 'Descripción', 'DESCRIPCION', 'Descripcio', 'description'], 'Haz clic para ver más información en el panel lateral.');
 
             return `
                 <div style="min-width: 220px; line-height: 1.55;">
@@ -679,8 +715,8 @@
         }
 
         function updateSelectedPanel(properties, layerType) {
-            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'name', 'Name'], 'Territorio sin nombre');
-            const descripcion = getProperty(properties, ['descripcion', 'Descripción', 'DESCRIPCION', 'description'], 'Este territorio forma parte de una estrategia de conservación y gestión territorial.');
+            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'nombre_c_1', 'nombre', 'name', 'Name'], 'Territorio sin nombre');
+            const descripcion = getProperty(properties, ['descripcion', 'Descripción', 'DESCRIPCION', 'Descripcio', 'description'], 'Este territorio forma parte de una estrategia de conservación y gestión territorial.');
             const categoria = getProperty(properties, ['categoria', 'Categoría', 'CATEGORIA', 'category'], layerType);
             const ubicacion = getProperty(properties, ['ubicacion', 'Ubicación', 'municipio', 'Municipio', 'pais', 'Pais', 'Country'], 'N/D');
             const hectareas = getProperty(properties, ['hectareas', 'Hectareas', 'Sup_ha', 'SUPERF_HA', 'area_ha', 'Area_ha'], 'N/D');
@@ -792,20 +828,36 @@
 
                     const layer = L.geoJSON(data, {
                         style: definition.style,
+                        pointToLayer: definition.point
+                            ? (feature, latlng) => L.circleMarker(latlng, definition.pointStyle)
+                            : undefined,
                         onEachFeature: (feature, featureLayer) => {
                             const properties = feature.properties || {};
-                            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'name', 'Name'], definition.name);
+                            const nombre = getProperty(properties, ['Nombre', 'NOMBRE', 'nombre_c_1', 'nombre', 'name', 'Name'], definition.name);
 
                             featureLayer.on({
                                 click: () => updateSelectedPanel(properties, definition.type),
                                 mouseover: (e) => {
-                                    e.target.setStyle({
-                                        weight: definition.style.weight + 1,
-                                        fillOpacity: Math.min((definition.style.fillOpacity || 0.2) + 0.14, 0.45)
-                                    });
+                                    if (definition.point) {
+                                        e.target.setStyle({
+                                            radius: definition.pointStyle.radius + 2,
+                                            weight: definition.pointStyle.weight + 1,
+                                            fillOpacity: Math.min(definition.pointStyle.fillOpacity + 0.1, 1)
+                                        });
+                                        e.target.bringToFront();
+                                    } else {
+                                        e.target.setStyle({
+                                            weight: definition.style.weight + 1,
+                                            fillOpacity: Math.min((definition.style.fillOpacity || 0.2) + 0.14, 0.45)
+                                        });
+                                    }
                                 },
                                 mouseout: (e) => {
-                                    layer.resetStyle(e.target);
+                                    if (definition.point) {
+                                        e.target.setStyle(definition.pointStyle);
+                                    } else {
+                                        layer.resetStyle(e.target);
+                                    }
                                 }
                             });
 
